@@ -1,61 +1,61 @@
-/*ÈÄÀ§ Ç¥±â½Ä °è»ê ÇÁ·Î±×·¥*/
+/* í›„ìœ„ í‘œê¸°ì‹ ê³„ì‚° í”„ë¡œê·¸ë¨ */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #define MAX_STACK_SIZE 100
 
-// ***** ½ºÅÃ ÄÚµåÀÇ ½ÃÀÛ
+// ***** ìŠ¤íƒ ì½”ë“œì˜ ì‹œì‘
 typedef int element;
 typedef struct {
     element data[MAX_STACK_SIZE];
     int top;
 } StackType;
 
-//½ºÅÃ ÃÊ±âÈ­ ÇÔ¼ö
+//ìŠ¤íƒ ì´ˆê¸°í™” í•¨ìˆ˜
 void init_stack(StackType* s) {
     s->top = -1;
 }
 
-//°ø¹é »óÅÂ °ËÃâ ÇÔ¼ö
+//ê³µë°± ìƒíƒœ ê²€ì¶œ í•¨ìˆ˜
 int is_empty(StackType* s) {
     return (s->top == -1);
 }
 
-//Æ÷È­ »óÅÂ °ËÃâ ÇÔ¼ö
+//í¬í™” ìƒíƒœ ê²€ì¶œ í•¨ìˆ˜
 int is_full(StackType* s) {
     return (s->top == (MAX_STACK_SIZE -1));
 }
 
-//»ğÀÔÇÔ¼ö
+//ì‚½ì…í•¨ìˆ˜
 void push(StackType* s, element item) {
     if (is_full(s)) {
-        fprintf (stderr, "½ºÅÃ Æ÷È­ ¿¡·¯\n");
+        fprintf (stderr, "ìŠ¤íƒ í¬í™” ì—ëŸ¬\n");
         return;
     }
     else s->data[++(s->top)] = item;
 }
 
-//»èÁ¦ÇÔ¼ö
+//ì‚­ì œí•¨ìˆ˜
 element pop(StackType* s) {
     if (is_empty(s)) {
-        fprintf (stderr, "½ºÅÃ °ø¹é ¿¡·¯\n");
+        fprintf (stderr, "ìŠ¤íƒ ê³µë°± ì—ëŸ¬\n");
         exit(1);
     }
     else return s->data[(s->top)--];
 }
 
-//ÇÇÅ©ÇÔ¼ö
+//í”¼í¬í•¨ìˆ˜
 element peek(StackType* s) {
     if (is_empty(s)) {
-        fprintf (stderr, "½ºÅÃ °ø¹é ¿¡·¯\n");
+        fprintf (stderr, "ìŠ¤íƒ ê³µë°± ì—ëŸ¬\n");
         exit(1);
     }
     else return s->data[(s->top)];
 }
-// ***** ½ºÅÃ ÄÚµåÀÇ ³¡
+// ***** ìŠ¤íƒ ì½”ë“œì˜ ë
 
-//ÈÄÀ§ Ç¥±â ¼ö½Ä °è»ê ÇÔ¼ö
+//í›„ìœ„ í‘œê¸° ìˆ˜ì‹ ê³„ì‚° í•¨ìˆ˜
 int eval(char exp[]) {
     int op1, op2, value;
     int len = strlen(exp);
@@ -65,13 +65,13 @@ int eval(char exp[]) {
     for (int i=0; i<len; i++) {
         ch = exp[i];
         if (ch != '+' && ch != '-' && ch != '*' && ch != '/') {
-            value = ch - '0';   //ÀÔ·ÂÀÌ ÇÇ¿¬»êÀÚÀÌ¸é
+            value = ch - '0';   //ì…ë ¥ì´ í”¼ì—°ì‚°ìì´ë©´
             push(&s, value);
         }
-        else {  //¿¬»êÀÚÀÌ¸é ÇÇ¿¬»êÀÚ¸¦ ½ºÅÃ¿¡¼­ Á¦°Å
+        else {  //ì—°ì‚°ìì´ë©´ í”¼ì—°ì‚°ìë¥¼ ìŠ¤íƒì—ì„œ ì œê±°
             op2 = pop(&s);
             op1 = pop(&s);
-            switch (ch) {   //¿¬»êÀ» ¼öÇàÇÏ°í ½ºÅÃ¿¡ ÀúÀå
+            switch (ch) {   //ì—°ì‚°ì„ ìˆ˜í–‰í•˜ê³  ìŠ¤íƒì— ì €ì¥
             case '+': push(&s, op1 + op2); break;
             case '-': push(&s, op1 - op2); break;
             case '*': push(&s, op1 * op2); break;
@@ -84,8 +84,8 @@ int eval(char exp[]) {
 
 int main(void) {
     int result;
-    printf("ÈÄÀ§ Ç¥±â½Ä : 82/3-32*+ \n");
+    printf("í›„ìœ„ í‘œê¸°ì‹ : 82/3-32*+ \n");
     result = eval("82/3-32*+");
-    printf("°á°ú°ª : %d\n", result);
+    printf("ê²°ê³¼ê°’ : %d\n", result);
     return 0;
 }
