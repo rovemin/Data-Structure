@@ -1,4 +1,4 @@
-/* ÃÖ´ñ°ª ±¸ÇÏ´Â ÇÁ·Î±×·¥ */
+/* ìµœëŒ“ê°’ êµ¬í•˜ëŠ” í”„ë¡œê·¸ëž¨ */
 
 #include <stdio.h>
 
@@ -8,6 +8,6 @@ int main() {
 	for (int i = 1; i < 10; i++)
 		if (A[i] > max)
 			max = A[i];
-	printf("ÃÖ´ñ°ª = %d\n", max);
+	printf("ìµœëŒ“ê°’ = %d\n", max);
 	return 0;
 }
