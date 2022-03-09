@@ -2,21 +2,21 @@
 #include <string.h>
 #include <stdlib.h>
 
-enum level { freshman = 1, sophomore, junior, senior }; //ÇĞ³â
-struct student {        //ÇĞ»ı Á¤º¸¸¦ ÀúÀåÇÒ ±¸Á¶Ã¼ ¸ğ¾ç
-    char name[20];      //ÀÌ¸§
-    enum level year;    //ÇĞ³â
-    int score;          //Á¡¼ö
-    struct student* next;   //´Ù¸¥ ÇĞ»ıÀ» °¡¸®Å³ Æ÷ÀÎÅÍ
+enum level { freshman = 1, sophomore, junior, senior }; //í•™ë…„
+struct student {        //í•™ìƒ ì •ë³´ë¥¼ ì €ì¥í•  êµ¬ì¡°ì²´ ëª¨ì–‘
+    char name[20];      //ì´ë¦„
+    enum level year;    //í•™ë…„
+    int score;          //ì ìˆ˜
+    struct student* next;   //ë‹¤ë¥¸ í•™ìƒì„ ê°€ë¦¬í‚¬ í¬ì¸í„°
 };
-typedef struct student STUDENT; //´Ğ³×ÀÓ Á¤ÀÇ
+typedef struct student STUDENT; //ë‹‰ë„¤ì„ ì •ì˜
 
 STUDENT * buildClass(STUDENT* list) {
     while (1) {
         STUDENT* s = (STUDENT*)malloc(sizeof(STUDENT));
-        printf("ÇĞ»ı Á¤º¸ (ÀÌ¸§ ÇĞ³â Á¡¼ö): ");
+        printf("í•™ìƒ ì •ë³´ (ì´ë¦„ í•™ë…„ ì ìˆ˜): ");
         scanf("%s %d %d", s->name, &s->year, &s->score);
-        if ((strcmp(s->name,"³¡") == 0) && (s->year == 0) && (s->score == 0))
+        if ((strcmp(s->name,"ë") == 0) && (s->year == 0) && (s->score == 0))
             break;
         s->next = list;
         list = s;
@@ -26,32 +26,32 @@ STUDENT * buildClass(STUDENT* list) {
 }
 
 void printClass(STUDENT* list) {
-    printf("\n** ÇĞ»ı ¸®½ºÆ® Ãâ·Â **\n");
+    printf("\n** í•™ìƒ ë¦¬ìŠ¤íŠ¸ ì¶œë ¥ **\n");
     for (STUDENT* s = list; s != NULL; s = s->next)
-        printf("%s : %dÇĞ³â, %dÁ¡\n", s->name, s->year, s->score);
+        printf("%s : %dí•™ë…„, %dì \n", s->name, s->year, s->score);
     printf("\n");
 }
 
 void printStudent(STUDENT* list, char* p) {
     for (STUDENT* s = list; s != NULL; s = s->next)
         if(strcmp(s->name, p) == 0) {
-            printf("%s : %dÇĞ³â, %dÁ¡\n", s->name, s->year, s->score);
+            printf("%s : %dí•™ë…„, %dì \n", s->name, s->year, s->score);
             break;
         }
     printf("\n");
 }
 
 void findStudents(STUDENT* list, int low, int high) {
-    printf("*** %dÁ¡°ú %dÁ¡ »çÀÌÀÇ ÇĞ»ı Á¤º¸ ***\n", low, high);
+    printf("*** %dì ê³¼ %dì  ì‚¬ì´ì˜ í•™ìƒ ì •ë³´ ***\n", low, high);
     for (STUDENT* s = list; s != NULL; s = s->next) {
         if((low <= (s->score)) && ((s->score) <= high)) 
-            printf("%s : %dÇĞ³â, %dÁ¡\n", s->name, s->year, s->score);
+            printf("%s : %dí•™ë…„, %dì \n", s->name, s->year, s->score);
     }
     printf("\n");
 }
 
 void printFour(STUDENT* list) {
-    printf("*** 4 ÇĞ»ıµéÀÇ ÀÌ¸§ ***\n");
+    printf("*** 4 í•™ìƒë“¤ì˜ ì´ë¦„ ***\n");
     STUDENT* p = list;
     printf("%s\n", p->name);
     printf("%s\n", p->next->name);
@@ -63,7 +63,7 @@ int main() {
     STUDENT* list = NULL;
     list = buildClass(list);
     printClass(list);
-    printStudent(list, "À±ÀÌÈ­");
+    printStudent(list, "ìœ¤ì´í™”");
     findStudents(list, 70, 80);
     printFour(list);
     return 0;
